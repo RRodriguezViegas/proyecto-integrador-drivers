@@ -1,15 +1,12 @@
 const { Router } = require('express');
-// const getDrivers = require('../controllers/getDrivers.js');
+const getDrivers = require('../controllers/getDrivers.js');
+const getDriversById = require('../controllers/getDriversById.js');
 
 const driversRouter = Router();
 
-driversRouter.get('/', (req, res) => {
-  res.send('get de /drivers');
-});
+driversRouter.get('/', getDrivers);
 
-driversRouter.get('/:idDriver', (req, res) => {
-  res.send('get de /drivers/:idDriver');
-});
+driversRouter.get('/:idDriver', getDriversById);
 
 driversRouter.post('/', (req, res) => {
   res.send('post de /drivers');
