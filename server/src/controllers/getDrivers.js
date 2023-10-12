@@ -4,9 +4,8 @@ const { Driver } = require('../db');
 
 const getDrivers = async (req, res) => {
   const { name } = req.query;
-  let drivers = [];
   if (name) {
-    const { rows } = await Driver.findAndCountAll({
+    const { rows: drivers } = await Driver.findAndCountAll({
       where: {
         Nombre: {
           [Op.iLike]: `%${name}%`,
@@ -15,7 +14,6 @@ const getDrivers = async (req, res) => {
       offset: 0,
       limit: 15,
     });
-    if (rows.length > 0) drivers.push(rows);
 
     axios
       .get(`http://localhost:5000/drivers`)
@@ -34,8 +32,8 @@ const getDrivers = async (req, res) => {
         res.status(400).send({ error: error.message });
       });
   } else {
-    const driversFromDB = await Driver.findAll();
     let drivers = [];
+    const driversFromDB = await Driver.findAll();
     if (driversFromDB.length > 0) drivers.push(driversFromDB);
     axios
       .get('http://localhost:5000/drivers')

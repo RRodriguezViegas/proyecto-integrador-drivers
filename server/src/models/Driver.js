@@ -15,17 +15,18 @@ module.exports = sequelize => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Descripción: {
+    Descripcion: {
       type: DataTypes.STRING,
     },
     Imagen: {
       type: DataTypes.STRING,
+      defaultValue: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
     },
     Nacionalidad: {
       type: DataTypes.STRING,
     },
     Fecha_de_Nacimiento: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
     },
   });
 };
