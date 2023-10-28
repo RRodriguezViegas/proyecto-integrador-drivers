@@ -12,13 +12,14 @@ const CreateDriver = () => {
     dispatch(getTeams());
   }, []);
 
+  let allTeams = [];
   const [driverData, setDriverData] = useState({
     name: '',
     surname: '',
     image: '',
     nationality: '',
     dob: '',
-    teams: 'Sin equipo',
+    teams: [],
     description: '',
   });
   const [errors, setErrors] = useState({});
@@ -35,6 +36,7 @@ const CreateDriver = () => {
         [e.target.name]: e.target.value,
       });
     }
+    console.log(driverData);
     setErrors(validate({ ...driverData, [e.target.name]: e.target.value }));
   };
 
@@ -49,7 +51,11 @@ const CreateDriver = () => {
 
   return (
     <div>
+      <h1>Create Driver</h1>
       <form>
+        {driverData.teams.map(team => (
+          <p>{team}</p>
+        ))}
         <input
           type='text'
           name='name'
@@ -57,7 +63,6 @@ const CreateDriver = () => {
           placeholder='Nombre'
           onChange={handleChange}
         />
-
         <input
           type='text'
           name='surname'
@@ -87,18 +92,13 @@ const CreateDriver = () => {
           onChange={handleChange}
         />
         <select name='teams' value={driverData.teams} onChange={handleChange}>
-          <option value=''>Sin equipo</option>
+          <option value={''}>Sin equipo</option>
           {teams?.map(team => (
             <option key={team.id} value={team} onChange={handleChange}>
               {team}
             </option>
           ))}
         </select>
-        {driverData.teams.map(team => (
-          <div key={team} name='teams'>
-            {team}
-          </div>
-        ))}
         <input
           type='text'
           name='description'

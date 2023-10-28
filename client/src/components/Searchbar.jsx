@@ -26,7 +26,9 @@ export default function SearchBar() {
       <button
         onClick={() => dispatch(onSearch(searchParams.get('name')))}
         type='submit'
-      ></button>
+      >
+        Search
+      </button>
     </div>
   );
 }
