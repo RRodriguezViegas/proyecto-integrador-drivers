@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { onSearch } from '../redux/actions';
+import { useSearchParams } from 'react-router-dom';
 
-export default function SearchBar({ onSearch }) {
-  const [name, setName] = useState('');
+export default function SearchBar() {
+  const [valueName, setValueName] = useState('');
   const dispatch = useDispatch();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const handleChange = e => {
-    setName(e.target.value);
+    setValueName(e.target.value);
   };
 
   return (
@@ -16,10 +20,13 @@ export default function SearchBar({ onSearch }) {
           placeholder='Search'
           type='search'
           onChange={handleChange}
-          value={name}
+          value={valueName}
         />
       </div>
-      <button onClick={() => dispatch(onSearch(name))} type='submit'></button>
+      <button
+        onClick={() => dispatch(onSearch(searchParams.get('name')))}
+        type='submit'
+      ></button>
     </div>
   );
 }

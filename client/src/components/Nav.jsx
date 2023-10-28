@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 export default function Nav() {
   return (
     <div>
-      <Link to={'/home'}>
+      <Link to={'/drivers'}>
         <button>Home</button>
       </Link>
       <Link to={'/create'}>
-        <button>Create Driver</button>
+        <button>Create new driver</button>
       </Link>
       <SearchBar />
     </div>

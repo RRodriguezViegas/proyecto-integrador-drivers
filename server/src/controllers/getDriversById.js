@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Driver } = require('../db');
+const { Driver, Team } = require('../db');
 
 const getDriversById = async (req, res) => {
   const { idDriver } = req.params;
@@ -14,7 +14,15 @@ const getDriversById = async (req, res) => {
       });
   } else {
     try {
-      let driver = await Driver.findByPk(idDriver.toString());
+      let driver = await Driver.findByPk(idDriver.toString(), {
+        include: {
+          model: Team,
+          attributes: ['nombre'],
+          through: {
+            attributes: [],
+          },
+        },
+      });
       if (driver) {
         res.status(200).send(driver);
       } else {

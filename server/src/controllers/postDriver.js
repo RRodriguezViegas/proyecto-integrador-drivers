@@ -1,34 +1,36 @@
-const { Driver } = require('../db');
+const { Driver, Team } = require('../db');
+const { Op } = require('sequelize');
 
 const postDriver = async (req, res) => {
   try {
-    const {
-      Nombre,
-      Apellido,
-      Descripcion,
-      imagen,
-      Nacionalidad,
-      Fecha_de_Nacimiento,
-      teams,
-    } = req.body;
-    if (!Nombre || !Apellido || !Nacionalidad || !Fecha_de_Nacimiento) {
-      res.status(400).send({ error: 'Faltan datos obligatorios' });
+    const { name, surname, description, image, nationality, dob, teams } =
+      req.body;
+    if (!name || !surname || !nationality || !dob) {
+      return res.status(400).json({ error: 'Faltan datos obligatorios' });
     }
 
     const newDriver = await Driver.create({
-      Nombre,
-      Apellido,
-      Descripcion,
-      imagen,
-      Nacionalidad,
-      Fecha_de_Nacimiento,
+      name,
+      surname,
+      description,
+      image,
+      nationality,
+      dob,
     });
 
-    newDriver.addTeams(teams);
+    const teamObjects = await Team.findAll({
+      where: {
+        nombre: {
+          [Op.in]: teams,
+        },
+      },
+    });
 
-    res.status(201).send(newDriver);
+    await newDriver.setTeams(teamObjects);
+
+    res.status(201).json(newDriver);
   } catch (error) {
-    res.status(400).send({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 
