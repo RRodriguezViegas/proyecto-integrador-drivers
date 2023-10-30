@@ -6,6 +6,8 @@ import {
   CLEAN_DETAIL,
   GET_TEAMS,
   POST_DRIVER,
+  SET_CURRENT_PAGE,
+  ORDER_CARDS,
 } from './types';
 
 export const onSearch = name => {
@@ -87,4 +89,15 @@ export const cleanDetail = () => {
   return {
     type: CLEAN_DETAIL,
   };
+};
+
+export const setCurrentPage = num => {
+  return {
+    type: SET_CURRENT_PAGE,
+    payload: num,
+  };
+};
+
+export const orderCards = orden => {
+  return { type: ORDER_CARDS, payload: orden };
 };

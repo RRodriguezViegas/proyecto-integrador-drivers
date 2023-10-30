@@ -3,11 +3,15 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDriversById, cleanDetail } from '../redux/actions';
+import styles from '../Css/Detail.module.css';
 
 export default function Detail() {
   let { id } = useParams();
   const dispatch = useDispatch();
   const driverDetail = useSelector(state => state.driverDetail);
+  let img;
+  const defaultImage =
+    'https://static.vecteezy.com/system/resources/previews/004/511/281/non_2x/default-avatar-photo-placeholder-profile-picture-vector.jpg';
 
   useEffect(() => {
     dispatch(getDriversById(id));
@@ -16,10 +20,12 @@ export default function Detail() {
     };
   }, [id, dispatch]);
 
-  console.log(driverDetail);
+  img = !driverDetail?.image?.url
+    ? driverDetail?.image
+    : driverDetail?.image.url;
 
   return (
-    <div>
+    <div className={styles.detail}>
       <h3>{driverDetail?.id}</h3>
       <h1>
         {driverDetail?.name?.forename
@@ -28,17 +34,10 @@ export default function Detail() {
       </h1>
       <h1>{driverDetail?.name?.surname}</h1>
       <h2>{driverDetail?.nationality}</h2>
+      {typeof driverDetail?.image === 'object' ? '' : ''}
       <img
-        src={
-          driverDetail?.image?.url
-            ? driverDetail?.image.url
-            : driverDetail?.image
-        }
-        alt={
-          driverDetail?.image?.url
-            ? driverDetail?.image.url
-            : driverDetail?.image
-        }
+        src={!img || typeof img === 'object' ? defaultImage : img}
+        alt='driver image'
         height='200px'
         width='200px'
       />

@@ -1,11 +1,13 @@
+const regexNameAndSurname = /^[a-zA-Z,'.\-\s]*$/i;
+
 const validate = driverData => {
   let errors = {};
 
-  if (!driverData.name) {
-    errors.name = 'Name is required';
+  if (!driverData.name || !regexNameAndSurname.test(driverData.name)) {
+    errors.name = 'Error on name';
   }
-  if (!driverData.surname) {
-    errors.surname = 'Surname is required';
+  if (!driverData.surname || !regexNameAndSurname.test(driverData.surname)) {
+    errors.surname = 'Error on surname';
   }
 
   return errors;

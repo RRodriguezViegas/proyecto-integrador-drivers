@@ -1,0 +1,92 @@
+.createDriver {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .createDriver h1 {
+    font-size: 80px;
+    margin-bottom: 40px;
+    color : white
+  }
+  
+  .createDriver form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .inputs {
+    width: 400px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .error {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #d20000;
+    background-color: #fff;
+    color: #000;
+  }
+
+  .submitButton {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #b90b0b;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .createDriver button:hover {
+    background-color: #900000
+  }
+
+  .createDriver button:hover:disabled {
+    background-color: #cccccc
+  }
+
+  .createDriver .selectedteams {
+    margin-bottom: 20px;
+  }
+  
+  .selectedteamsgrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .selectedteams {
+    border-radius: 5px;
+    margin: 10px;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    /* justify-content: flex-end; */
+  }
+  
+  .createDriver .selectedteams p {
+    font-size: 16px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color : ffffff;
+    
+  }
+
+  .createDriver .selectedteams button {
+    float: inline-end;
+    margin-right: 10px;
+    padding: 7px 8px;
+    font-size: 12px;  
+    background-color: rgba(0, 0, 0, 0.486);
+    color: white;
+    border: none;
+    cursor: pointer;
+  }

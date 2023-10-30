@@ -5,9 +5,16 @@ import {
   CLEAN_DETAIL,
   GET_TEAMS,
   POST_DRIVER,
+  SET_CURRENT_PAGE,
+  ORDER_CARDS,
 } from './types';
 
-const initialState = { drivers: [], driverDetail: [], teams: [] };
+const initialState = {
+  drivers: [],
+  driverDetail: [],
+  teams: [],
+  currentPage: 1,
+};
 
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -20,7 +27,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case ON_SEARCH:
       return {
         ...state,
-        drivers: [...state.drivers, payload],
+        drivers: [payload],
       };
 
     case GET_DRIVERS_BY_ID:
@@ -44,6 +51,25 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case POST_DRIVER:
       return {
         state,
+        drivers: [...state.drivers, payload],
+      };
+
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: payload,
+      };
+
+    case ORDER:
+      let orderedCharacters = [...state.allCharacters];
+      if (action.payload === 'A') {
+        orderedCharacters.sort((a, b) => a.id - b.id);
+      } else if (action.payload === 'D') {
+        orderedCharacters.sort((a, b) => b.id - a.id);
+      }
+      return {
+        ...state,
+        myFavorites: orderedCharacters,
       };
 
     default:

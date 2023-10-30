@@ -8,7 +8,7 @@ const getDrivers = async (req, res) => {
     const { rows: drivers } = await Driver.findAndCountAll(
       {
         where: {
-          Nombre: {
+          name: {
             [Op.iLike]: `%${name}%`,
           },
         },
