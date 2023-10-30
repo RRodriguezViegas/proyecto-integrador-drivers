@@ -23,9 +23,9 @@ export default function Home() {
     }
   }, [drivers]);
 
-  const handleOrder = e => {
-    dispatch(orderCards(e.target.value));
-  };
+  // const handleOrder = e => {
+  //   dispatch(orderCards(e.target.value));
+  // };
 
   const mapeado = paginatedDrivers?.map(
     e => (
@@ -55,11 +55,11 @@ export default function Home() {
 
   return (
     <div>
-      <select className={styles.selectBox} onChange={handleOrder}>
+      {/* <select className={styles.selectBox} onChange={handleOrder}>
         <option value='S'>Sin Orden</option>
         <option value='A'>Ascendente</option>
         <option value='D'>Descendente</option>
-      </select>
+      </select> */}
       <div className={styles.container}>{mapeado}</div>
       <div>
         <div className={styles.pagination}>
