@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getTeams, postDriver, getDrivers } from '../redux/actions';
 import validate from '../utils/validate';
-import { useNavigate } from 'react-router-dom';
 import styles from '../Css/CreateDriver.module.css';
 
 const CreateDriver = () => {
   const teams = useSelector(state => state.teams);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getTeams());
