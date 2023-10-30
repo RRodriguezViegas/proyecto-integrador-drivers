@@ -60,17 +60,17 @@ const rootReducer = (state = initialState, { type, payload }) => {
         currentPage: payload,
       };
 
-    case ORDER:
-      let orderedCharacters = [...state.allCharacters];
-      if (action.payload === 'A') {
-        orderedCharacters.sort((a, b) => a.id - b.id);
-      } else if (action.payload === 'D') {
-        orderedCharacters.sort((a, b) => b.id - a.id);
-      }
-      return {
-        ...state,
-        myFavorites: orderedCharacters,
-      };
+    // case ORDER:
+    //   let orderedCharacters = [...state.allCharacters];
+    //   if (action.payload === 'A') {
+    //     orderedCharacters.sort((a, b) => a.id - b.id);
+    //   } else if (action.payload === 'D') {
+    //     orderedCharacters.sort((a, b) => b.id - a.id);
+    //   }
+    //   return {
+    //     ...state,
+    //     myFavorites: orderedCharacters,
+    //   };
 
     default:
       return state;

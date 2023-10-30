@@ -11,7 +11,8 @@ import {
 } from './types';
 
 export const onSearch = name => {
-  const endpoint = 'http://localhost:3001/drivers?name=' + name;
+  const endpoint =
+    'https://pi-drivers-backend.onrender.com/drivers?name=' + name;
   return async dispatch => {
     try {
       const { data } = await axios.get(endpoint);
@@ -26,7 +27,7 @@ export const onSearch = name => {
 };
 
 export const getDrivers = () => {
-  const endpoint = 'http://localhost:3001/drivers';
+  const endpoint = 'https://pi-drivers-backend.onrender.com/drivers';
   return async dispatch => {
     try {
       const { data } = await axios.get(endpoint);
@@ -41,7 +42,7 @@ export const getDrivers = () => {
 };
 
 export const getDriversById = id => {
-  const endpoint = 'http://localhost:3001/drivers/' + id;
+  const endpoint = 'https://pi-drivers-backend.onrender.com/drivers/' + id;
   return async dispatch => {
     try {
       const { data } = await axios.get(endpoint);
@@ -56,7 +57,7 @@ export const getDriversById = id => {
 };
 
 export const getTeams = () => {
-  const endpoint = 'http://localhost:3001/teams';
+  const endpoint = 'https://pi-drivers-backend.onrender.com/teams';
   return async dispatch => {
     try {
       const { data } = await axios.get(endpoint);
@@ -71,7 +72,7 @@ export const getTeams = () => {
 };
 
 export const postDriver = driverData => {
-  const endpoint = 'http://localhost:3001/drivers';
+  const endpoint = 'https://pi-drivers-backend.onrender.com/drivers';
   return async dispatch => {
     try {
       const { data } = await axios.post(endpoint, driverData);
@@ -98,6 +99,6 @@ export const setCurrentPage = num => {
   };
 };
 
-export const orderCards = orden => {
-  return { type: ORDER_CARDS, payload: orden };
-};
+// export const orderCards = orden => {
+//   return { type: ORDER_CARDS, payload: orden };
+// };
