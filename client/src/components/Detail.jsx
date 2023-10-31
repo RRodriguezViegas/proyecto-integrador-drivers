@@ -56,17 +56,14 @@ export default function Detail() {
         ))}
       </h2>
       <h2>{driverDetail?.teams}</h2>
-      {driverDetail.id > 999 ? (
-        <button
-          onClick={() => {
-            handleDelete;
-          }}
-        >
-          Delete
-        </button>
-      ) : (
-        ''
-      )}
+
+      <button
+        onClick={() => {
+          handleDelete;
+        }}
+      >
+        Delete
+      </button>
     </div>
   );
 }

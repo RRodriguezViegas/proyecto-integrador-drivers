@@ -148,7 +148,7 @@ export const orderCards = (orden, driversHome) => {
   return { type: ORDER_CARDS, payload: orderedDrivers };
 };
 
-const deleteDriver = id => {
+export const deleteDriver = id => {
   const endpoint = 'https://pi-drivers-backend.onrender.com/drivers/' + id;
   return async dispatch => {
     try {
