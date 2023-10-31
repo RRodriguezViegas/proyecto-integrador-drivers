@@ -1,5 +1,5 @@
 body {
-  background-color: #171717;
+  background-color: #071827;
 }
 
 .pagination {
@@ -21,7 +21,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   align-items: center;
-  margin: 20px;
+  margin: 20px 200px
 
 }
 
@@ -55,4 +55,13 @@ button:hover {
 button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  margin-top: 30px;
+  font-size: 90px
 }

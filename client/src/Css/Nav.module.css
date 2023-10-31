@@ -2,13 +2,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #b20000;
+    background-color: #e52936;
     padding: 10px;
+    border-radius: 5px;
   }
   
   .navbar button {
-    background-color: #171717;
-    color: white;
+    background-color: #798994;
+    color: #ccc;
     border: none;
     padding: 10px 20px;
     text-align: center;

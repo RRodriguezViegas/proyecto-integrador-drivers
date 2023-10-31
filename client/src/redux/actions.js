@@ -99,6 +99,50 @@ export const setCurrentPage = num => {
   };
 };
 
-// export const orderCards = orden => {
-//   return { type: ORDER_CARDS, payload: orden };
-// };
+export const orderCards = (orden, driversHome) => {
+  let orderedDrivers = driversHome;
+  if (orden === 'A') {
+    orderedDrivers.sort(function (a, b) {
+      const nameA = a.name.forename ? a.name.forename : a.name;
+      const nameB = b.name.forename ? b.name.forename : b.name;
+
+      const normalizedNameA = nameA
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, 'e');
+      const normalizedNameB = nameB
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, 'e');
+
+      if (normalizedNameA < normalizedNameB) {
+        return -1;
+      }
+      if (normalizedNameA > normalizedNameB) {
+        return 1;
+      }
+
+      return 0;
+    });
+  } else if (orden === 'D') {
+    orderedDrivers.sort(function (a, b) {
+      const nameA = a.name.forename ? a.name.forename : a.name;
+      const nameB = b.name.forename ? b.name.forename : b.name;
+
+      const normalizedNameA = nameA
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, 'e');
+      const normalizedNameB = nameB
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, 'e');
+
+      if (normalizedNameA > normalizedNameB) {
+        return -1;
+      }
+      if (normalizedNameA < normalizedNameB) {
+        return 1;
+      }
+
+      return 0;
+    });
+  }
+  return { type: ORDER_CARDS, payload: orderedDrivers };
+};

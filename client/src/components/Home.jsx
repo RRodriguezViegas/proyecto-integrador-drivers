@@ -1,7 +1,7 @@
 import Card from './Card';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDrivers, setCurrentPage } from '../redux/actions';
+import { getDrivers, setCurrentPage, orderCards } from '../redux/actions';
 import styles from '../Css/Home.module.css';
 
 export default function Home() {
@@ -23,16 +23,15 @@ export default function Home() {
     }
   }, [drivers]);
 
-  // const handleOrder = e => {
-  //   dispatch(orderCards(e.target.value));
-  // };
+  const handleOrder = e => {
+    dispatch(orderCards(e.target.value, drivers[0]));
+  };
 
   const mapeado = paginatedDrivers?.map(
     e => (
       (auxForTeams = e?.Teams?.slice(team => team.nombre)),
       auxForTeams ? (teamsArray = auxForTeams?.map(e => e.nombre)) : '',
       (
-        // console.log(teamsArray),
         <Card
           key={e.id}
           id={e.id}
@@ -45,21 +44,30 @@ export default function Home() {
     )
   );
 
-  if (!paginatedDrivers) {
-    return <div>Loading...</div>;
+  https: if (!paginatedDrivers) {
+    return (
+      <div>
+        <img
+          src='https://i.gifer.com/ZZ5H.gif'
+          alt='loading'
+          height={40}
+          width={40}
+        />
+      </div>
+    );
   }
 
   if (paginatedDrivers.length === 0) {
-    return <div>No se encontraron resultados</div>;
+    return <span>No se encontraron resultados</span>;
   }
 
   return (
     <div>
-      {/* <select className={styles.selectBox} onChange={handleOrder}>
+      <select className={styles.selectBox} onChange={handleOrder}>
         <option value='S'>Sin Orden</option>
         <option value='A'>Ascendente</option>
         <option value='D'>Descendente</option>
-      </select> */}
+      </select>
       <div className={styles.container}>{mapeado}</div>
       <div>
         <div className={styles.pagination}>
