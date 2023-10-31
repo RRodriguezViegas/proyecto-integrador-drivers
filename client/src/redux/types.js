@@ -6,3 +6,4 @@ export const GET_TEAMS = 'GET_TEAMS';
 export const POST_DRIVER = 'POST_DRIVER';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const ORDER_CARDS = 'ORDER_CARDS';
+export const DELETE_DRIVER = 'DELETE_DRIVER';

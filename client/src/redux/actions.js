@@ -8,6 +8,7 @@ import {
   POST_DRIVER,
   SET_CURRENT_PAGE,
   ORDER_CARDS,
+  DELETE_DRIVER,
 } from './types';
 
 export const onSearch = name => {
@@ -145,4 +146,19 @@ export const orderCards = (orden, driversHome) => {
     });
   }
   return { type: ORDER_CARDS, payload: orderedDrivers };
+};
+
+const deleteDriver = id => {
+  const endpoint = 'https://pi-drivers-backend.onrender.com/drivers/' + id;
+  return async dispatch => {
+    try {
+      await axios.delete(endpoint);
+      return dispatch({
+        type: DELETE_DRIVER,
+        payload: 'Driver deleted',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };

@@ -43,19 +43,21 @@ const CreateDriver = () => {
         [e.target.name]: e.target.value,
       });
     }
-    console.log('driverData', driverData);
-    console.log('allTeams', allTeams);
+    // console.log('driverData', driverData);
+    // console.log('allTeams', allTeams);
     setErrors(validate({ ...driverData, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
     if (Object.keys(errors).length === 0) {
+      driverData.name = (
+        driverData.name[0].toUpperCase() + driverData.name.slice(1)
+      ).trim();
       await dispatch(postDriver(driverData));
       dispatch(getTeams());
       await dispatch(getDrivers());
       alert('Driver created successfully');
-      // navigate('/drivers');
     }
   };
 

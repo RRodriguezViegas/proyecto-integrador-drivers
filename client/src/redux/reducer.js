@@ -7,6 +7,7 @@ import {
   POST_DRIVER,
   SET_CURRENT_PAGE,
   ORDER_CARDS,
+  DELETE_DRIVER,
 } from './types';
 
 const initialState = {
@@ -64,6 +65,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         drivers: [payload],
+      };
+
+    case DELETE_DRIVER:
+      return {
+        ...state,
       };
 
     default:

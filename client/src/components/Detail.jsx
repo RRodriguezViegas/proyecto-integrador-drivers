@@ -1,13 +1,14 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDriversById, cleanDetail } from '../redux/actions';
+import { getDriversById, cleanDetail, deleteDriver } from '../redux/actions';
 import styles from '../Css/Detail.module.css';
 
 export default function Detail() {
   let { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const driverDetail = useSelector(state => state.driverDetail);
   let img;
   const defaultImage =
@@ -19,6 +20,12 @@ export default function Detail() {
       dispatch(cleanDetail());
     };
   }, [id, dispatch]);
+
+  const handleDelete = () => {
+    dispatch(deleteDriver(id));
+    dispatch(cleanDetail());
+    navigate('/drivers');
+  };
 
   img = !driverDetail?.image?.url
     ? driverDetail?.image
@@ -49,6 +56,17 @@ export default function Detail() {
         ))}
       </h2>
       <h2>{driverDetail?.teams}</h2>
+      {driverDetail.id > 999 ? (
+        <button
+          onClick={() => {
+            handleDelete;
+          }}
+        >
+          Delete
+        </button>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
