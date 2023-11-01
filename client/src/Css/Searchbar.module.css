@@ -4,6 +4,12 @@
     justify-content: center;
     margin: 20px;
   }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   
   .searchbar input[type='search'] {
     padding: 10px;

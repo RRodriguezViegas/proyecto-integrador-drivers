@@ -9,6 +9,8 @@ import {
   SET_CURRENT_PAGE,
   ORDER_CARDS,
   DELETE_DRIVER,
+  FILTER_BY_TEAM,
+  FILTER_BY_ORIGIN,
 } from './types';
 
 export const onSearch = name => {
@@ -141,11 +143,28 @@ export const orderCards = (orden, driversHome) => {
       if (normalizedNameA < normalizedNameB) {
         return 1;
       }
-
+      return 0;
+    });
+  } else if (orden === 'N') {
+    orderedDrivers.sort(function (a, b) {
+      if (a.dob > b.dob) {
+        return -1;
+      }
+      if (a.dob < b.dob) {
+        return 1;
+      }
       return 0;
     });
   }
   return { type: ORDER_CARDS, payload: orderedDrivers };
+};
+
+export const filterByTeam = (value, driversHome) => {
+  let filteredDrivers = driversHome.filter(
+    e => e && e.teams && e.teams.includes(value)
+  );
+
+  return { type: FILTER_BY_TEAM, payload: filteredDrivers };
 };
 
 export const deleteDriver = id => {

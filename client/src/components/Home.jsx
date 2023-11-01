@@ -1,13 +1,21 @@
 import Card from './Card';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDrivers, setCurrentPage, orderCards } from '../redux/actions';
+import {
+  getDrivers,
+  setCurrentPage,
+  orderCards,
+  onSearch,
+  getTeams,
+  filterByTeam,
+} from '../redux/actions';
 import styles from '../Css/Home.module.css';
 
 export default function Home() {
   let auxForTeams;
   const dispatch = useDispatch();
   const drivers = useSelector(state => state.drivers);
+  const teams = useSelector(state => state.teams);
   let teamsArray = [];
   const currentPage = useSelector(state => state.currentPage);
   const pageSize = 9;
@@ -19,12 +27,34 @@ export default function Home() {
   useEffect(() => {
     if (!drivers[0]) {
       dispatch(getDrivers());
+      dispatch(getTeams());
       setCurrentPage(1);
     }
   }, [drivers]);
 
+  // console.log(drivers);
+
   const handleOrder = e => {
-    dispatch(orderCards(e.target.value, drivers[0]));
+    if (e.target.value === 'S') {
+      dispatch(onSearch(''));
+    } else {
+      dispatch(orderCards(e.target.value, drivers[0]));
+    }
+  };
+
+  const handleTeamFilter = e => {
+    if (e.target.value === 'S') {
+      dispatch(onSearch(''));
+    } else {
+      dispatch(filterByTeam(e.target.value, drivers[0]));
+    }
+  };
+
+  const handleOriginFilter = e => {
+    if (e.target.value === 'S') {
+      dispatch(onSearch(''));
+    } else {
+    }
   };
 
   const mapeado = paginatedDrivers?.map(
@@ -44,9 +74,9 @@ export default function Home() {
     )
   );
 
-  https: if (!paginatedDrivers) {
+  if (!paginatedDrivers) {
     return (
-      <div>
+      <div className={styles.loading}>
         <img
           src='https://i.gifer.com/ZZ5H.gif'
           alt='loading'
@@ -63,11 +93,29 @@ export default function Home() {
 
   return (
     <div>
-      <select className={styles.selectBox} onChange={handleOrder}>
-        <option value='S'>Sin Orden</option>
-        <option value='A'>Ascendente</option>
-        <option value='D'>Descendente</option>
-      </select>
+      <div className={styles.selectBoxWrapper}>
+        <select className={styles.selectBox} onChange={handleOrder}>
+          <option value='S'>Sin Orden</option>
+          <option value='A'>Ascendente</option>
+          <option value='D'>Descendente</option>
+          <option value='N'>Fecha de nacimiento</option>
+        </select>
+        <span>Filtrar por</span>
+        <select className={styles.selectBox} onChange={handleTeamFilter}>
+          <option value='S'>Team</option>
+          {teams?.map(team => (
+            <option key={team.id} value={team}>
+              {team}
+            </option>
+          ))}
+        </select>
+        <select className={styles.selectBox} onChange={handleOriginFilter}>
+          <option value='S'>Origin</option>
+          <option value='DB'>DB</option>
+          <option value='API'>API</option>
+        </select>
+      </div>
+
       <div className={styles.container}>{mapeado}</div>
       <div>
         <div className={styles.pagination}>

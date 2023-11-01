@@ -2,7 +2,12 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDriversById, cleanDetail, deleteDriver } from '../redux/actions';
+import {
+  getDriversById,
+  cleanDetail,
+  deleteDriver,
+  getDrivers,
+} from '../redux/actions';
 import styles from '../Css/Detail.module.css';
 
 export default function Detail() {
@@ -21,7 +26,7 @@ export default function Detail() {
     };
   }, [id, dispatch]);
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     dispatch(deleteDriver(id));
     dispatch(cleanDetail());
     navigate('/drivers');
@@ -30,6 +35,19 @@ export default function Detail() {
   img = !driverDetail?.image?.url
     ? driverDetail?.image
     : driverDetail?.image.url;
+
+  if (!driverDetail) {
+    return (
+      <div className={styles.loading}>
+        <img
+          src='https://i.gifer.com/ZZ5H.gif'
+          alt='loading'
+          height={40}
+          width={40}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.detail}>
@@ -56,14 +74,17 @@ export default function Detail() {
         ))}
       </h2>
       <h2>{driverDetail?.teams}</h2>
-
-      <button
-        onClick={() => {
-          handleDelete;
-        }}
-      >
-        Delete
-      </button>
+      {!(typeof driverDetail.id === 'number') ? (
+        <button
+          onClick={() => {
+            handleDelete();
+          }}
+        >
+          Delete
+        </button>
+      ) : (
+        ''
+      )}
     </div>
   );
 }

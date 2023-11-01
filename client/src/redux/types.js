@@ -7,3 +7,5 @@ export const POST_DRIVER = 'POST_DRIVER';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 export const ORDER_CARDS = 'ORDER_CARDS';
 export const DELETE_DRIVER = 'DELETE_DRIVER';
+export const FILTER_BY_TEAM = 'FILTER_BY_TEAM';
+export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN';

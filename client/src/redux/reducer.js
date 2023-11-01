@@ -8,6 +8,8 @@ import {
   SET_CURRENT_PAGE,
   ORDER_CARDS,
   DELETE_DRIVER,
+  FILTER_BY_TEAM,
+  FILTER_BY_ORIGIN,
 } from './types';
 
 const initialState = {
@@ -62,6 +64,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case ORDER_CARDS:
+      return {
+        ...state,
+        drivers: [payload],
+      };
+
+    case FILTER_BY_TEAM:
       return {
         ...state,
         drivers: [payload],
