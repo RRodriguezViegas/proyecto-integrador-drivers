@@ -92,3 +92,26 @@
   .delete hover:disabled {
     background-color: #6a6464;
   }
+
+@media (max-width: 1500px) {
+  .detail {
+    width: 80%;
+    height: auto;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .detailLeft {
+    display: none;
+  }
+
+  .detailRight {
+    width: 80%;
+    border-radius: 20px;
+  }
+
+  .buttons {
+    margin-top: 10px;
+  }
+}
+
