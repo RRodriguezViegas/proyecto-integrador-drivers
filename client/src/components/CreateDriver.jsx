@@ -56,6 +56,7 @@ const CreateDriver = () => {
       dispatch(getTeams());
       await dispatch(getDrivers());
       alert('Driver created successfully');
+      window.location.reload(false);
     }
   };
 
@@ -70,92 +71,93 @@ const CreateDriver = () => {
   return (
     <div className={styles.createDriver}>
       <h1>Create Driver</h1>
-      <div></div>
-      <form>
-        <input
-          type='text'
-          name='name'
-          value={driverData.name}
-          placeholder='Name'
-          onChange={handleChange}
-          className={errors.name ? styles.error : styles.inputs}
-        />
-        <input
-          type='text'
-          name='surname'
-          value={driverData.surname}
-          placeholder='Last Name'
-          onChange={handleChange}
-          className={errors.surname ? styles.error : styles.inputs}
-        />
-        <input
-          type='text'
-          name='image'
-          value={driverData.image}
-          placeholder='Image URL'
-          onChange={handleChange}
-          className={styles.inputs}
-        />
-        <input
-          type='text'
-          name='nationality'
-          value={driverData.nationality}
-          placeholder='Nationality'
-          onChange={handleChange}
-          className={styles.inputs}
-        />
-        <input
-          type='date'
-          name='dob'
-          value={driverData.dob}
-          placeholder='Birth Date'
-          onChange={handleChange}
-          className={styles.inputs}
-        />
-        <select
-          name='teams'
-          value={driverData.teams}
-          onChange={handleChange}
-          className={styles.inputs}
-        >
-          <option value={''}>No team</option>
-          {teams?.map(team => (
-            <option key={team.id} value={team} onChange={handleChange}>
-              {team}
-            </option>
-          ))}
-        </select>
-        <input
-          type='text'
-          name='description'
-          value={driverData.description}
-          placeholder='Description'
-          onChange={handleChange}
-          className={styles.inputs}
-        />
-        <div className={styles.selectedteamsgrid}>
-          {driverData.teams.map(team => (
-            <div className={styles.selectedteams}>
-              <p>{team}</p>
-              <button
-                type='button'
-                onClick={() => handleRemove(team)}
-                className='teamButton'
-              >
-                x
-              </button>
-            </div>
-          ))}
-        </div>
+      <div className={styles.form}>
+        <form>
+          <input
+            type='text'
+            name='name'
+            value={driverData.name}
+            placeholder='Name'
+            onChange={handleChange}
+            className={errors.name ? styles.error : styles.inputs}
+          />
+          <input
+            type='text'
+            name='surname'
+            value={driverData.surname}
+            placeholder='Last Name'
+            onChange={handleChange}
+            className={errors.surname ? styles.error : styles.inputs}
+          />
+          <input
+            type='text'
+            name='image'
+            value={driverData.image}
+            placeholder='Image URL'
+            onChange={handleChange}
+            className={styles.inputs}
+          />
+          <input
+            type='text'
+            name='nationality'
+            value={driverData.nationality}
+            placeholder='Nationality'
+            onChange={handleChange}
+            className={styles.inputs}
+          />
+          <input
+            type='date'
+            name='dob'
+            value={driverData.dob}
+            placeholder='Birth Date'
+            onChange={handleChange}
+            className={styles.inputs}
+          />
+          <select
+            name='teams'
+            value={driverData.teams}
+            onChange={handleChange}
+            className={styles.inputs}
+          >
+            <option value={''}>No team</option>
+            {teams?.map(team => (
+              <option key={team.id} value={team} onChange={handleChange}>
+                {team}
+              </option>
+            ))}
+          </select>
+          <input
+            type='text'
+            name='description'
+            value={driverData.description}
+            placeholder='Description'
+            onChange={handleChange}
+            className={styles.inputs}
+          />
+          <div className={styles.selectedteamsgrid}>
+            {driverData.teams.map(team => (
+              <div className={styles.selectedteams}>
+                <p>{team}</p>
+                <button
+                  type='button'
+                  onClick={() => handleRemove(team)}
+                  className='teamButton'
+                >
+                  x
+                </button>
+              </div>
+            ))}
+          </div>
 
-        <button
-          onClick={handleSubmit}
-          disabled={Object.keys(errors).length > 0}
-          className='submitButton'
-        >
-          Submit
-        </button>
-      </form>
+          <button
+            onClick={handleSubmit}
+            disabled={Object.keys(errors).length > 0}
+            className='submitButton'
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

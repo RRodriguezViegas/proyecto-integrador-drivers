@@ -25,6 +25,8 @@
     border: 1px solid #ccc;
     background-color: #fff;
     color: #000;
+    outline: none;
+    background: transparent;
   }
   
   .error {
@@ -89,4 +91,16 @@
     color: white;
     border: none;
     cursor: pointer;
+  }
+
+  .form {
+    background-color: #d9d2d2;
+    padding: 40px;
+    border-radius: 10px;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    
   }

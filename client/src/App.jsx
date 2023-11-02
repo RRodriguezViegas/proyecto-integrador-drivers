@@ -5,13 +5,12 @@ import Home from './components/Home.jsx';
 import Error404 from './components/Error404.jsx';
 import Nav from './components/Nav.jsx';
 import Detail from './components/Detail.jsx';
-import styles from './Css/App.modules.css';
 
 function App() {
   const location = useLocation();
 
   return (
-    <div className={styles.app}>
+    <div>
       {location.pathname !== '/' ? <Nav /> : ''}
       <Routes>
         <Route path='/' element={<LandingPage />} />
