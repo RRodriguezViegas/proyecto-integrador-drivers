@@ -56,6 +56,9 @@ body {
     grid-template-columns: 1fr;
     margin: 20px 0px
   }
+  .selectBoxWrapper {
+    display: inline-block;
+  }
 }
 
 button {

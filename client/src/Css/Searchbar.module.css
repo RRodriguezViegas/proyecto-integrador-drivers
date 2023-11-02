@@ -42,3 +42,9 @@
   .searchbar button:focus {
     outline: none;
   }
+
+  @media (max-width: 480px) {
+    .searchbar {
+      display: inline-block;
+    }
+  }
