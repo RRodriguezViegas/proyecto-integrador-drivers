@@ -1,51 +1,85 @@
+.bigOlContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .detail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-    color : white;
+  margin-top: 50px;
+  text-align: center;
+  background-color: #ee3542;
+  width: 65%;
+  height: 690px;
+  border-radius: 20px;
+  box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.detailLeft {
+  float: left;
+  color: rgb(225, 210, 210);
+  width: 30%;
+  height: 100%;
+  background-color: #ee3542;
+  border-radius: 20px 0px 0px 20px;
+}
+
+.detailRight {
+  padding-top: 50px;
+  padding-left: 40px;
+  text-align: left;
+  float: right;
+  color: rgb(49, 49, 49);
+  font-size: 16px;
+  width: 66%;
+  height: 92.7%;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #d9d2d2;
+  border-radius: 0px 20px 20px 0px;
+  overflow: auto;
+  position: relative;
+} 
+
+  .id {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    font-family: 'Roboto Mono', monospace;
   }
-  
-  .detail h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .detail h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-  }
-  
-  .detail h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .detail p {
-    font-size: 18px;
-    margin-bottom: 20px;
+
+  .nameLeft {
+    margin-top: 20px;
+    font-size: 70px;
+    font-family: 'Montserrat', sans-serif;
   }
   
   .detail img {
     border-radius: 50%;
-    margin-bottom: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #d9d2d2;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.241);
   }
   
-  .detail h2 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .detail h2 li {
-    margin-bottom: 10px;
+  .label {
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
   }
 
-  .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 90px;
+  .description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    width: 650px;
+  }
+
+  .buttons {
+    margin-bottom: 20px;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .back {
+    float: left;
+  }
+
+  .delete {
+    margin-left: 570px;
+    float: right;
   }

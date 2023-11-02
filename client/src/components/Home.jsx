@@ -8,6 +8,7 @@ import {
   onSearch,
   getTeams,
   filterByTeam,
+  filterByOrigin,
 } from '../redux/actions';
 import styles from '../Css/Home.module.css';
 
@@ -16,6 +17,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const drivers = useSelector(state => state.drivers);
   const teams = useSelector(state => state.teams);
+  const allDrivers = useSelector(state => state.allDrivers);
   let teamsArray = [];
   const currentPage = useSelector(state => state.currentPage);
   const pageSize = 9;
@@ -32,28 +34,25 @@ export default function Home() {
     }
   }, [drivers]);
 
-  // console.log(drivers);
+  console.log(drivers);
 
   const handleOrder = e => {
     if (e.target.value === 'S') {
       dispatch(onSearch(''));
     } else {
-      dispatch(orderCards(e.target.value, drivers[0]));
+      dispatch(orderCards(e.target.value, allDrivers[0]));
     }
   };
 
   const handleTeamFilter = e => {
-    if (e.target.value === 'S') {
-      dispatch(onSearch(''));
-    } else {
-      dispatch(filterByTeam(e.target.value, drivers[0]));
-    }
+    dispatch(filterByTeam(e.target.value, allDrivers[0]));
   };
 
   const handleOriginFilter = e => {
     if (e.target.value === 'S') {
       dispatch(onSearch(''));
     } else {
+      dispatch(filterByOrigin(e.target.value, drivers[0]));
     }
   };
 
@@ -88,7 +87,17 @@ export default function Home() {
   }
 
   if (paginatedDrivers.length === 0) {
-    return <span>No se encontraron resultados</span>;
+    return (
+      <div>
+        <span className={styles.noResults}>No se encontraron resultados</span>
+        <div className={styles.statusNotFound}>
+          <span className={styles.four}>4</span>
+          <span className={styles.zero}>0</span>
+          <span className={styles.four}>4</span>
+        </div>
+        <button>reset</button>
+      </div>
+    );
   }
 
   return (

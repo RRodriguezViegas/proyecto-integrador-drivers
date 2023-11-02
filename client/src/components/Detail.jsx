@@ -2,12 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getDriversById,
-  cleanDetail,
-  deleteDriver,
-  getDrivers,
-} from '../redux/actions';
+import { getDriversById, cleanDetail, deleteDriver } from '../redux/actions';
 import styles from '../Css/Detail.module.css';
 
 export default function Detail() {
@@ -36,55 +31,75 @@ export default function Detail() {
     ? driverDetail?.image
     : driverDetail?.image.url;
 
-  if (!driverDetail) {
-    return (
-      <div className={styles.loading}>
-        <img
-          src='https://i.gifer.com/ZZ5H.gif'
-          alt='loading'
-          height={40}
-          width={40}
-        />
-      </div>
-    );
-  }
-
   return (
-    <div className={styles.detail}>
-      <h3>{driverDetail?.id}</h3>
-      <h1>
-        {driverDetail?.name?.forename
-          ? driverDetail?.name.forename
-          : driverDetail?.name}
-      </h1>
-      <h1>{driverDetail?.name?.surname}</h1>
-      <h2>{driverDetail?.nationality}</h2>
-      {typeof driverDetail?.image === 'object' ? '' : ''}
-      <img
-        src={!img || typeof img === 'object' ? defaultImage : img}
-        alt='driver image'
-        height='200px'
-        width='200px'
-      />
-      <p>{driverDetail?.description}</p>
-      <h2>{driverDetail?.dob}</h2>
-      <h2>
-        {driverDetail?.Teams?.map(team => (
-          <p key={team.id}>{team.nombre}</p>
-        ))}
-      </h2>
-      <h2>{driverDetail?.teams}</h2>
-      {!(typeof driverDetail.id === 'number') ? (
-        <button
-          onClick={() => {
-            handleDelete();
-          }}
-        >
-          Delete
-        </button>
-      ) : (
-        ''
-      )}
+    <div className={styles.bigOlContainer}>
+      <div className={styles.detail}>
+        <div className={styles.detailLeft}>
+          <p className={styles.id}>{driverDetail?.id}</p>
+          <img
+            src={!img || typeof img === 'object' ? defaultImage : img}
+            alt='driver image'
+            height='200px'
+            width='200px'
+          />
+          <h1 className={styles.nameLeft}>
+            {driverDetail?.name?.forename
+              ? driverDetail?.name.forename
+              : driverDetail?.name}
+          </h1>
+        </div>
+
+        <div className={styles.detailRight}>
+          <span className={styles.label}>Name</span>
+          <p>
+            {driverDetail?.name?.forename
+              ? driverDetail?.name.forename
+              : driverDetail?.name}
+          </p>
+
+          <span className={styles.label}>Surname</span>
+          <p>
+            {driverDetail?.name?.surname
+              ? driverDetail?.name.surname
+              : driverDetail?.surname}
+          </p>
+
+          <span className={styles.label}>Nationality</span>
+          <p>{driverDetail?.nationality}</p>
+
+          <span className={styles.label}>Description</span>
+          <p className={styles.description}>{driverDetail?.description}</p>
+
+          <span className={styles.label}>Date of birth</span>
+          <p>{driverDetail?.dob}</p>
+
+          <span className={styles.label}>Teams</span>
+          <div>
+            {driverDetail?.Teams?.map(team => (
+              <p key={team.id}>{team.nombre}</p>
+            ))}
+          </div>
+          <p>{driverDetail?.teams}</p>
+
+          <div className={styles.buttons}>
+            <button
+              onClick={() => navigate('/drivers')}
+              className={styles.back}
+            >
+              Go back
+            </button>
+            <button
+              onClick={() => {
+                handleDelete();
+              }}
+              disabled={typeof driverDetail.id === 'number'}
+              className={styles.delete}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

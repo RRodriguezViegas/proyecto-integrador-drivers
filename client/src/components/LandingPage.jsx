@@ -7,8 +7,10 @@ export default function LandingPage() {
 
   return (
     <div className={styles.landingPage}>
-      <h1>LandingPage</h1>
-      <button onClick={() => navigate('/drivers')}>Drivers</button>
+      <h1 className={styles.title}>Welcome to my Drivers Project!</h1>
+      <button onClick={() => navigate('/drivers')} className={styles.start}>
+        Start
+      </button>
     </div>
   );
 }

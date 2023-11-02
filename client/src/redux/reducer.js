@@ -14,6 +14,7 @@ import {
 
 const initialState = {
   drivers: [],
+  allDrivers: [],
   driverDetail: [],
   teams: [],
   currentPage: 1,
@@ -25,6 +26,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         drivers: [...state.drivers, payload],
+        allDrivers: [...state.allDrivers, payload],
       };
 
     case ON_SEARCH:
@@ -70,6 +72,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case FILTER_BY_TEAM:
+      return {
+        ...state,
+        drivers: [payload],
+      };
+
+    case FILTER_BY_ORIGIN:
       return {
         ...state,
         drivers: [payload],

@@ -160,11 +160,24 @@ export const orderCards = (orden, driversHome) => {
 };
 
 export const filterByTeam = (value, driversHome) => {
+  if (value === 'S') {
+    return { type: FILTER_BY_TEAM, payload: driversHome };
+  }
   let filteredDrivers = driversHome.filter(
     e => e && e.teams && e.teams.includes(value)
   );
 
   return { type: FILTER_BY_TEAM, payload: filteredDrivers };
+};
+
+export const filterByOrigin = (value, driversHome) => {
+  let filteredDrivers;
+  if (value === 'API') {
+    filteredDrivers = driversHome.filter(e => e.id < 999);
+  } else {
+    filteredDrivers = driversHome.filter(e => !(e.id < 999));
+  }
+  return { type: FILTER_BY_ORIGIN, payload: filteredDrivers };
 };
 
 export const deleteDriver = id => {

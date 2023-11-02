@@ -54,7 +54,7 @@ body {
 }
 
 button {
-  background-color: #c3260a;
+  background-color: #ee3542;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -65,7 +65,7 @@ button {
 }
 
 button:hover {
-  background-color: #ff3333;
+  background-color: #a3242d;
 }
 
 button:disabled {
@@ -74,6 +74,32 @@ button:disabled {
 }
 
 .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 90px;
+}
+
+.statusNotFound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 320px;
+  font-family: 'Luckiest Guy', cursive;
+}
+
+.four {
+  color : #ee3542;
+}
+
+.zero {
+  color : #d9d2d2;
+}
+
+.noResults {
+  color: #ede2e2;
+  font-size: 40px;
+  font-family: 'Luckiest Guy', cursive;
   display: flex;
   justify-content: center;
   align-items: center;
