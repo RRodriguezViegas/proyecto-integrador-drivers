@@ -9,7 +9,7 @@
   .createDriver h1 {
     font-size: 80px;
     margin-bottom: 40px;
-    color : white
+    color : #eeeeee
   }
   
   .createDriver form {
@@ -19,36 +19,42 @@
   
   .inputs {
     width: 400px;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
     padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    color: #000;
+    border: none;
+    border-bottom: solid 1px #484848;
+    color: black;
     outline: none;
     background: transparent;
+    outline: transparent;
+    font-size: 20px;
   }
   
   .error {
-    margin-bottom: 10px;
+    width: 400px;
+    margin-bottom: 18px;
     padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #d20000;
-    background-color: #fff;
-    color: #000;
+    border: none;
+    border-bottom: solid 1px #484848;
+    color: black;
+    outline: none;
+    border-radius: 1px;
+    background-color: #ff878787;
+    outline: transparent;
+    font-size: 20px;
   }
 
   .submitButton {
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: #b90b0b;
+    background-color: #ee3542;
     color: #fff;
     border: none;
     cursor: pointer;
   }
   
   .createDriver button:hover {
-    background-color: #900000
+    background-color: #c52c36
   }
 
   .createDriver button:hover:disabled {
@@ -71,7 +77,6 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    /* justify-content: flex-end; */
   }
   
   .createDriver .selectedteams p {
@@ -83,8 +88,6 @@
   }
 
   .createDriver .selectedteams button {
-    float: inline-end;
-    margin-right: 10px;
     padding: 7px 8px;
     font-size: 12px;  
     background-color: rgba(0, 0, 0, 0.486);
@@ -100,7 +103,5 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
-    font-family: 'Montserrat', sans-serif;
-    
+    margin-top: 15px;
   }

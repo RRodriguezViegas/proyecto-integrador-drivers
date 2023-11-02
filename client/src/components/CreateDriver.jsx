@@ -52,8 +52,14 @@ const CreateDriver = () => {
       driverData.name = (
         driverData.name[0].toUpperCase() + driverData.name.slice(1)
       ).trim();
+      driverData.surname = (
+        driverData.surname[0].toUpperCase() + driverData.surname.slice(1)
+      ).trim();
+      driverData.nationality =
+        driverData.nationality[0].toUpperCase() +
+        driverData.nationality.slice(1).trim();
       await dispatch(postDriver(driverData));
-      dispatch(getTeams());
+      await dispatch(getTeams());
       await dispatch(getDrivers());
       alert('Driver created successfully');
       window.location.reload(false);
@@ -103,7 +109,7 @@ const CreateDriver = () => {
             value={driverData.nationality}
             placeholder='Nationality'
             onChange={handleChange}
-            className={styles.inputs}
+            className={errors.nationality ? styles.error : styles.inputs}
           />
           <input
             type='date'
@@ -111,7 +117,7 @@ const CreateDriver = () => {
             value={driverData.dob}
             placeholder='Birth Date'
             onChange={handleChange}
-            className={styles.inputs}
+            className={errors.dob ? styles.error : styles.inputs}
           />
           <select
             name='teams'
