@@ -2,7 +2,12 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDriversById, cleanDetail, deleteDriver } from '../redux/actions';
+import {
+  getDriversById,
+  cleanDetail,
+  deleteDriver,
+  onSearch,
+} from '../redux/actions';
 import styles from '../Css/Detail.module.css';
 
 export default function Detail() {
@@ -22,7 +27,9 @@ export default function Detail() {
   }, [id, dispatch]);
 
   const handleDelete = async () => {
-    dispatch(deleteDriver(id));
+    await dispatch(deleteDriver(id));
+    await dispatch(onSearch(''));
+    alert('Driver deleted successfully');
     dispatch(cleanDetail());
     navigate('/drivers');
   };
@@ -47,6 +54,23 @@ export default function Detail() {
               ? driverDetail?.name.forename
               : driverDetail?.name}
           </h1>
+          <div className={styles.buttons}>
+            <button
+              onClick={() => navigate('/drivers')}
+              className={styles.back}
+            >
+              Go back
+            </button>
+            <button
+              onClick={() => {
+                handleDelete();
+              }}
+              disabled={typeof driverDetail.id === 'number'}
+              className={styles.delete}
+            >
+              Delete
+            </button>
+          </div>
         </div>
 
         <div className={styles.detailRight}>
@@ -80,24 +104,6 @@ export default function Detail() {
             ))}
           </div>
           <p>{driverDetail?.teams}</p>
-
-          <div className={styles.buttons}>
-            <button
-              onClick={() => navigate('/drivers')}
-              className={styles.back}
-            >
-              Go back
-            </button>
-            <button
-              onClick={() => {
-                handleDelete();
-              }}
-              disabled={typeof driverDetail.id === 'number'}
-              className={styles.delete}
-            >
-              Delete
-            </button>
-          </div>
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@
   padding-left: 40px;
   text-align: left;
   float: right;
-  color: rgb(49, 49, 49);
+  color: #313131;
   font-size: 16px;
   width: 66%;
   height: 92.7%;
@@ -70,16 +70,25 @@
   }
 
   .buttons {
-    margin-bottom: 20px;
-    position: absolute;
+    margin-top: 230px;
     bottom: 0;
   }
 
   .back {
-    float: left;
+    background-color: #d9d2d2;
+    color: #313131;
   }
 
   .delete {
-    margin-left: 570px;
-    float: right;
+    background-color: #d9d2d2;
+    color: #313131;
+    margin-left: 70px;
+  }
+
+  .delete:disabled {
+    background-color: #6a6464;
+  }
+
+  .delete hover:disabled {
+    background-color: #6a6464;
   }
