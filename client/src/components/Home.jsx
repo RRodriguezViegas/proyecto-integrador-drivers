@@ -34,8 +34,6 @@ export default function Home() {
     }
   }, [drivers]);
 
-  // console.log(drivers);
-
   const handleOrder = e => {
     if (e.target.value === 'S') {
       dispatch(onSearch(''));
@@ -46,11 +44,20 @@ export default function Home() {
 
   const handleTeamFilter = e => {
     dispatch(setCurrentPage(1));
-    dispatch(filterByTeam(e.target.value, allDrivers[0]));
+    if (e.target.value === 'S') {
+      dispatch(onSearch(''));
+    } else {
+      dispatch(filterByTeam(e.target.value, allDrivers[0]));
+    }
   };
 
   const handleOriginFilter = e => {
-    dispatch(filterByOrigin(e.target.value, allDrivers[0]));
+    dispatch(setCurrentPage(1));
+    if (e.target.value === 'S') {
+      dispatch(onSearch(''));
+    } else {
+      dispatch(filterByOrigin(e.target.value, allDrivers[0]));
+    }
   };
 
   const mapeado = paginatedDrivers?.map(
@@ -102,13 +109,14 @@ export default function Home() {
   return (
     <div>
       <div className={styles.selectBoxWrapper}>
+        <span className={styles.spans}>Order: </span>
         <select className={styles.selectBox} onChange={handleOrder}>
-          <option value='S'>Sin Orden</option>
-          <option value='A'>Ascendente</option>
-          <option value='D'>Descendente</option>
-          <option value='N'>Fecha de nacimiento</option>
+          <option value='S'>No Order</option>
+          <option value='A'>Ascending</option>
+          <option value='D'>Descending</option>
+          <option value='N'>Birth Date</option>
         </select>
-        <span>Filtrar por</span>
+        <span className={styles.spans}>Filter: </span>
         <select className={styles.selectBox} onChange={handleTeamFilter}>
           <option value='S'>Team</option>
           {teams?.map(team => (

@@ -43,8 +43,6 @@ const CreateDriver = () => {
         [e.target.name]: e.target.value,
       });
     }
-    // console.log('driverData', driverData);
-    // console.log('allTeams', allTeams);
     setErrors(validate({ ...driverData, [e.target.name]: e.target.value }));
   };
 
@@ -72,12 +70,13 @@ const CreateDriver = () => {
   return (
     <div className={styles.createDriver}>
       <h1>Create Driver</h1>
+      <div></div>
       <form>
         <input
           type='text'
           name='name'
           value={driverData.name}
-          placeholder='Nombre'
+          placeholder='Name'
           onChange={handleChange}
           className={errors.name ? styles.error : styles.inputs}
         />
@@ -85,7 +84,7 @@ const CreateDriver = () => {
           type='text'
           name='surname'
           value={driverData.surname}
-          placeholder='Apellido'
+          placeholder='Last Name'
           onChange={handleChange}
           className={errors.surname ? styles.error : styles.inputs}
         />
@@ -93,7 +92,7 @@ const CreateDriver = () => {
           type='text'
           name='image'
           value={driverData.image}
-          placeholder='URL de Imagen'
+          placeholder='Image URL'
           onChange={handleChange}
           className={styles.inputs}
         />
@@ -101,7 +100,7 @@ const CreateDriver = () => {
           type='text'
           name='nationality'
           value={driverData.nationality}
-          placeholder='Nacionalidad'
+          placeholder='Nationality'
           onChange={handleChange}
           className={styles.inputs}
         />
@@ -109,7 +108,7 @@ const CreateDriver = () => {
           type='date'
           name='dob'
           value={driverData.dob}
-          placeholder='Fecha de nacimiento'
+          placeholder='Birth Date'
           onChange={handleChange}
           className={styles.inputs}
         />
@@ -119,7 +118,7 @@ const CreateDriver = () => {
           onChange={handleChange}
           className={styles.inputs}
         >
-          <option value={''}>Sin equipo</option>
+          <option value={''}>No team</option>
           {teams?.map(team => (
             <option key={team.id} value={team} onChange={handleChange}>
               {team}
@@ -130,7 +129,7 @@ const CreateDriver = () => {
           type='text'
           name='description'
           value={driverData.description}
-          placeholder='Descripción'
+          placeholder='Description'
           onChange={handleChange}
           className={styles.inputs}
         />

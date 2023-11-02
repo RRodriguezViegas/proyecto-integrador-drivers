@@ -10,6 +10,7 @@ body {
   background-color: #d9d2d2;
   color: #000;
   font-size: 16px;
+  margin: 0px 5px;
 }
 
 .selectBoxWrapper {
@@ -80,6 +81,14 @@ button:disabled {
   justify-content: center;
   align-items: center;
   margin-top: 90px;
+}
+
+.spans {
+  color: #d9d2d2;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0px 10px;
+  display: flex;
+  align-items: center;
 }
 
 .statusNotFound {

@@ -160,10 +160,6 @@ export const orderCards = (orden, driversHome) => {
 };
 
 export const filterByTeam = (value, driversHome) => {
-  if (value === 'S') {
-    return { type: FILTER_BY_TEAM, payload: driversHome };
-  }
-
   let filteredDriversFromApi = driversHome.filter(
     e => e && e.teams && e.teams.includes(value)
   );
@@ -178,9 +174,6 @@ export const filterByTeam = (value, driversHome) => {
 };
 
 export const filterByOrigin = (value, driversHome) => {
-  if (value === 'S') {
-    return { type: FILTER_BY_ORIGIN, payload: driversHome };
-  }
   let filteredDrivers;
   if (value === 'API') {
     filteredDrivers = driversHome.filter(e => e.id < 999);
