@@ -5,12 +5,14 @@ const validate = driverData => {
 
   if (
     driverData.name.length < 3 ||
+    driverData.name.length > 25 ||
     !regexNotSpecialNorNumber.test(driverData.name)
   ) {
     errors.name = 'Error on name';
   }
   if (
     driverData.surname.length < 3 ||
+    driverData.surname.length > 25 ||
     !regexNotSpecialNorNumber.test(driverData.surname)
   ) {
     errors.surname = 'Error on surname';
@@ -18,6 +20,7 @@ const validate = driverData => {
 
   if (
     driverData.nationality.length < 3 ||
+    driverData.nationality.length > 25 ||
     !regexNotSpecialNorNumber.test(driverData.nationality)
   ) {
     errors.nationality = 'Error on nationality';

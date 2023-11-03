@@ -16,10 +16,10 @@ module.exports = sequelize => {
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       defaultValue: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
     },
     nationality: {
