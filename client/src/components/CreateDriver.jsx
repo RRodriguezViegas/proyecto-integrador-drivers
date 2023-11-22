@@ -1,9 +1,9 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { getTeams, postDriver, getDrivers } from '../redux/actions';
-import validate from '../utils/validate';
-import styles from '../Css/CreateDriver.module.css';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getTeams, postDriver, getDrivers } from "../redux/actions";
+import validate from "../utils/validate";
+import styles from "../Css/CreateDriver.module.css";
 
 const CreateDriver = () => {
   const teams = useSelector(state => state.teams);
@@ -11,23 +11,23 @@ const CreateDriver = () => {
 
   useEffect(() => {
     dispatch(getTeams());
-    setErrors({ nationality: '.' });
+    setErrors({ nationality: "." });
   }, []);
 
   let allTeams = [];
   const [driverData, setDriverData] = useState({
-    name: '',
-    surname: '',
-    image: '',
-    nationality: '',
-    dob: '',
+    name: "",
+    surname: "",
+    image: "",
+    nationality: "",
+    dob: "",
     teams: [],
-    description: '',
+    description: "",
   });
   const [errors, setErrors] = useState({});
 
   const handleChange = e => {
-    if (e.target.name === 'teams') {
+    if (e.target.name === "teams") {
       const selectedTeam = e.target.value;
       if (driverData.teams.includes(selectedTeam)) {
         return;
@@ -61,7 +61,7 @@ const CreateDriver = () => {
       await dispatch(postDriver(driverData));
       await dispatch(getTeams());
       await dispatch(getDrivers());
-      alert('Driver created successfully');
+      alert("Driver created successfully");
       window.location.reload(false);
     }
   };
@@ -96,7 +96,8 @@ const CreateDriver = () => {
             className={errors.surname ? styles.error : styles.inputs}
           />
           <input
-            type='text'
+            type='file'
+            accept='image/*'
             name='image'
             value={driverData.image}
             placeholder='Image URL'
@@ -125,7 +126,7 @@ const CreateDriver = () => {
             onChange={handleChange}
             className={styles.inputs}
           >
-            <option value={''}>No team</option>
+            <option value={""}>No team</option>
             {teams?.map(team => (
               <option key={team.id} value={team} onChange={handleChange}>
                 {team}
