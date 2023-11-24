@@ -54,7 +54,7 @@ const postDriver = async (req, res) => {
   // try {
   try {
     if (req.file) {
-      const result = await cloudinary.uploader.upload(req.image.path);
+      // const result = await cloudinary.uploader.upload(req.image.path);
       console.log(result);
       res.status(201).json({
         message: "nice",
