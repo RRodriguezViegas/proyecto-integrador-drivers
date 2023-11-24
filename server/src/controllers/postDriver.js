@@ -52,24 +52,23 @@ cloudinary.config({
 
 const postDriver = async (req, res) => {
   // try {
-  try {
-    if (req.file) {
-      // const result = await cloudinary.uploader.upload(req.image.path);
-      console.log(result);
-      res.status(201).json({
-        message: "nice",
-      });
-    } else {
-      res.status(404).send({ status: "error", message: `File not found!` });
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).send({ status: "err", error: err });
-  }
+  // try {
+  //   if (req.file) {
+  //     // const result = await cloudinary.uploader.upload(req.image.path);
+  //     console.log(result);
+  //     res.status(201).json({
+  //       message: "nice",
+  //     });
+  //   } else {
+  //     res.status(404).send({ status: "error", message: `File not found!` });
+  //   }
+  // } catch (err) {
+  //   console.log(err);
+  //   res.status(500).send({ status: "err", error: err });
+  // }
   // if (!name || !surname || !nationality || !dob) {
   //   return res.status(400).json({ error: "Faltan datos obligatorios" });
   // }
-
   // upload(image, res, err => {
   //   if (err) {
   //     console.log(err);
@@ -79,12 +78,10 @@ const postDriver = async (req, res) => {
   //     });
   //   }
   // });
-
   // if (image) {
   //   const result = await uploadImage(image);
   //   image = result;
   // }
-
   // const newDriver = await Driver.create({
   //   name,
   //   surname,
@@ -93,7 +90,6 @@ const postDriver = async (req, res) => {
   //   nationality,
   //   dob,
   // });
-
   // const teamObjects = await Team.findAll({
   //   where: {
   //     nombre: {
@@ -101,9 +97,7 @@ const postDriver = async (req, res) => {
   //     },
   //   },
   // });
-
   // await newDriver.setTeams(teamObjects);
-
   //   res.status(201).json({ message: "OwO" });
   // } catch (error) {
   //   res.status(400).json({ error: error.message });
