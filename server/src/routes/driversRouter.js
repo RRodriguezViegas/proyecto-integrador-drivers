@@ -23,9 +23,6 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage: storage });
 
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
-
 const driversRouter = Router();
 
 driversRouter.get("/", getDrivers);
