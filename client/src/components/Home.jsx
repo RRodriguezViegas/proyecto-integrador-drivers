@@ -1,6 +1,6 @@
-import Card from './Card';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import Card from "./Card";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getDrivers,
   setCurrentPage,
@@ -9,8 +9,8 @@ import {
   getTeams,
   filterByTeam,
   filterByOrigin,
-} from '../redux/actions';
-import styles from '../Css/Home.module.css';
+} from "../redux/actions";
+import styles from "../Css/Home.module.css";
 
 export default function Home() {
   let auxForTeams;
@@ -35,8 +35,8 @@ export default function Home() {
   }, [drivers]);
 
   const handleOrder = e => {
-    if (e.target.value === 'S') {
-      dispatch(onSearch(''));
+    if (e.target.value === "S") {
+      dispatch(onSearch(""));
     } else {
       dispatch(orderCards(e.target.value, drivers[0]));
     }
@@ -44,8 +44,8 @@ export default function Home() {
 
   const handleTeamFilter = e => {
     dispatch(setCurrentPage(1));
-    if (e.target.value === 'S') {
-      dispatch(onSearch(''));
+    if (e.target.value === "S") {
+      dispatch(onSearch(""));
     } else {
       dispatch(filterByTeam(e.target.value, allDrivers[0]));
     }
@@ -53,8 +53,8 @@ export default function Home() {
 
   const handleOriginFilter = e => {
     dispatch(setCurrentPage(1));
-    if (e.target.value === 'S') {
-      dispatch(onSearch(''));
+    if (e.target.value === "S") {
+      dispatch(onSearch(""));
     } else {
       dispatch(filterByOrigin(e.target.value, allDrivers[0]));
     }
@@ -63,7 +63,7 @@ export default function Home() {
   const mapeado = paginatedDrivers?.map(
     e => (
       (auxForTeams = e?.Teams?.slice(team => team.nombre)),
-      auxForTeams ? (teamsArray = auxForTeams?.map(e => e.nombre)) : '',
+      auxForTeams ? (teamsArray = auxForTeams?.map(e => e.nombre)) : "",
       (
         <Card
           key={e.id}
@@ -100,7 +100,7 @@ export default function Home() {
           <span className={styles.four}>4</span>
         </div>
         <div className={styles.reset}>
-          <button onClick={() => dispatch(onSearch(''))}>Reset</button>
+          <button onClick={() => dispatch(onSearch(""))}>Reset</button>
         </div>
       </div>
     );

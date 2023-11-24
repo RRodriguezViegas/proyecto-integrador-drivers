@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   ON_SEARCH,
   GET_DRIVERS,
@@ -11,11 +11,11 @@ import {
   DELETE_DRIVER,
   FILTER_BY_TEAM,
   FILTER_BY_ORIGIN,
-} from './types';
+} from "./types";
 
 export const onSearch = name => {
   const endpoint =
-    'https://pi-drivers-backend.onrender.com/drivers?name=' + name;
+    "https://pi-drivers-backend.onrender.com/drivers?name=" + name;
   return async dispatch => {
     try {
       const { data } = await axios.get(endpoint);
@@ -30,7 +30,7 @@ export const onSearch = name => {
 };
 
 export const getDrivers = () => {
-  const endpoint = 'https://pi-drivers-backend.onrender.com/drivers';
+  const endpoint = "https://pi-drivers-backend.onrender.com/drivers";
   return async dispatch => {
     try {
       const { data } = await axios.get(endpoint);
@@ -45,7 +45,7 @@ export const getDrivers = () => {
 };
 
 export const getDriversById = id => {
-  const endpoint = 'https://pi-drivers-backend.onrender.com/drivers/' + id;
+  const endpoint = "https://pi-drivers-backend.onrender.com/drivers/" + id;
   return async dispatch => {
     try {
       const { data } = await axios.get(endpoint);
@@ -60,7 +60,7 @@ export const getDriversById = id => {
 };
 
 export const getTeams = () => {
-  const endpoint = 'https://pi-drivers-backend.onrender.com/teams';
+  const endpoint = "https://pi-drivers-backend.onrender.com/teams";
   return async dispatch => {
     try {
       const { data } = await axios.get(endpoint);
@@ -75,10 +75,14 @@ export const getTeams = () => {
 };
 
 export const postDriver = driverData => {
-  const endpoint = 'https://pi-drivers-backend.onrender.com/drivers';
+  const endpoint = "https://pi-drivers-backend.onrender.com/drivers";
   return async dispatch => {
     try {
-      const { data } = await axios.post(endpoint, driverData);
+      const { data } = await axios.post(endpoint, driverData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       return dispatch({
         type: POST_DRIVER,
         payload: data,
@@ -104,17 +108,17 @@ export const setCurrentPage = num => {
 
 export const orderCards = (orden, driversHome) => {
   let orderedDrivers = driversHome;
-  if (orden === 'A') {
+  if (orden === "A") {
     orderedDrivers.sort(function (a, b) {
       const nameA = a.name.forename ? a.name.forename : a.name;
       const nameB = b.name.forename ? b.name.forename : b.name;
 
       const normalizedNameA = nameA
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, 'e');
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "e");
       const normalizedNameB = nameB
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, 'e');
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "e");
 
       if (normalizedNameA < normalizedNameB) {
         return -1;
@@ -125,17 +129,17 @@ export const orderCards = (orden, driversHome) => {
 
       return 0;
     });
-  } else if (orden === 'D') {
+  } else if (orden === "D") {
     orderedDrivers.sort(function (a, b) {
       const nameA = a.name.forename ? a.name.forename : a.name;
       const nameB = b.name.forename ? b.name.forename : b.name;
 
       const normalizedNameA = nameA
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, 'e');
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "e");
       const normalizedNameB = nameB
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, 'e');
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "e");
 
       if (normalizedNameA > normalizedNameB) {
         return -1;
@@ -145,7 +149,7 @@ export const orderCards = (orden, driversHome) => {
       }
       return 0;
     });
-  } else if (orden === 'N') {
+  } else if (orden === "N") {
     orderedDrivers.sort(function (a, b) {
       if (a.dob > b.dob) {
         return -1;
@@ -175,7 +179,7 @@ export const filterByTeam = (value, driversHome) => {
 
 export const filterByOrigin = (value, driversHome) => {
   let filteredDrivers;
-  if (value === 'API') {
+  if (value === "API") {
     filteredDrivers = driversHome.filter(e => e.id < 999);
   } else {
     filteredDrivers = driversHome.filter(e => !(e.id < 999));
@@ -184,13 +188,13 @@ export const filterByOrigin = (value, driversHome) => {
 };
 
 export const deleteDriver = id => {
-  const endpoint = 'https://pi-drivers-backend.onrender.com/drivers/' + id;
+  const endpoint = "https://pi-drivers-backend.onrender.com/drivers/" + id;
   return async dispatch => {
     try {
       await axios.delete(endpoint);
       return dispatch({
         type: DELETE_DRIVER,
-        payload: 'Driver deleted',
+        payload: "Driver deleted",
       });
     } catch (error) {
       console.log(error);

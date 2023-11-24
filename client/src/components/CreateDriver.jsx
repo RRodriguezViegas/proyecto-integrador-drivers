@@ -15,6 +15,7 @@ const CreateDriver = () => {
   }, []);
 
   let allTeams = [];
+  const [image, setImage] = useState("");
   const [driverData, setDriverData] = useState({
     name: "",
     surname: "",
@@ -37,6 +38,8 @@ const CreateDriver = () => {
         ...driverData,
         teams: updatedTeams,
       });
+    } else if (e.target.type === "file") {
+      setImage(e.target.files[0]);
     } else {
       setDriverData({
         ...driverData,
@@ -44,6 +47,7 @@ const CreateDriver = () => {
       });
     }
     setErrors(validate({ ...driverData, [e.target.name]: e.target.value }));
+    console.log(driverData);
   };
 
   const handleSubmit = async e => {
@@ -58,11 +62,21 @@ const CreateDriver = () => {
       driverData.nationality =
         driverData.nationality[0].toUpperCase() +
         driverData.nationality.slice(1).trim();
-      await dispatch(postDriver(driverData));
+
+      const driverDataForm = new FormData();
+      driverDataForm.append("name", driverData.name);
+      driverDataForm.append("surname", driverData.surname);
+      driverDataForm.append("image", image);
+      driverDataForm.append("nationality", driverData.nationality);
+      driverDataForm.append("dob", driverData.dob);
+      driverDataForm.append("teams", driverData.teams);
+      driverDataForm.append("description", driverData.description);
+
+      await dispatch(postDriver(driverDataForm));
       await dispatch(getTeams());
       await dispatch(getDrivers());
       alert("Driver created successfully");
-      window.location.reload(false);
+      // window.location.reload(false);
     }
   };
 
@@ -99,7 +113,7 @@ const CreateDriver = () => {
             type='file'
             accept='image/*'
             name='image'
-            value={driverData.image}
+            value=''
             placeholder='Image URL'
             onChange={handleChange}
             className={styles.inputs}
