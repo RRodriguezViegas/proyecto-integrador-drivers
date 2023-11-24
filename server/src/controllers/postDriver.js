@@ -68,26 +68,26 @@ const postDriver = async (req, res) => {
     //   image = result;
     // }
 
-    const newDriver = await Driver.create({
-      name,
-      surname,
-      description,
-      // image,
-      nationality,
-      dob,
-    });
+    // const newDriver = await Driver.create({
+    //   name,
+    //   surname,
+    //   description,
+    //   // image,
+    //   nationality,
+    //   dob,
+    // });
 
-    const teamObjects = await Team.findAll({
-      where: {
-        nombre: {
-          [Op.in]: teams,
-        },
-      },
-    });
+    // const teamObjects = await Team.findAll({
+    //   where: {
+    //     nombre: {
+    //       [Op.in]: teams,
+    //     },
+    //   },
+    // });
 
-    await newDriver.setTeams(teamObjects);
+    // await newDriver.setTeams(teamObjects);
 
-    res.status(201).json(newDriver);
+    res.status(201).json({ message: "OwO" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
