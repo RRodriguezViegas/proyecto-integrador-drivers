@@ -12,10 +12,10 @@ cloudinary.config({
 const postDriver = async (req, res) => {
   // try {
   try {
-    if (req) {
-      console.log(req);
-      // const result = await cloudinary.uploader.upload(req.image.path);
-      res.status(201).json({ status: "success" });
+    if (req.file) {
+      // console.log(req);
+      const result = await cloudinary.uploader.upload(req.file.path);
+      console.log("resultado de cloudinary", result);
     } else {
       res.status(404).send({ status: "error", message: `File not found!` });
     }
