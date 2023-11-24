@@ -10,7 +10,7 @@ import {
   DELETE_DRIVER,
   FILTER_BY_TEAM,
   FILTER_BY_ORIGIN,
-} from './types';
+} from "./types";
 
 const initialState = {
   drivers: [],
@@ -55,8 +55,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
     case POST_DRIVER:
       return {
-        state,
-        drivers: [...state.drivers, payload],
+        // state,
+        // drivers: [...state.drivers, payload],
       };
 
     case SET_CURRENT_PAGE:

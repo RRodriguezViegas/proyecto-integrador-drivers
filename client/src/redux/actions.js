@@ -78,11 +78,7 @@ export const postDriver = driverData => {
   const endpoint = "https://pi-drivers-backend.onrender.com/drivers";
   return async dispatch => {
     try {
-      const { data } = await axios.post(endpoint, driverData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const { data } = await axios.post(endpoint, driverData);
       return dispatch({
         type: POST_DRIVER,
         payload: data,

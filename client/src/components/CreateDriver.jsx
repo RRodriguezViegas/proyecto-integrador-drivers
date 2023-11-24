@@ -40,6 +40,7 @@ const CreateDriver = () => {
       });
     } else if (e.target.type === "file") {
       setImage(e.target.files[0]);
+      console.log(e.target.files[0]);
     } else {
       setDriverData({
         ...driverData,
@@ -113,9 +114,6 @@ const CreateDriver = () => {
           />
           <input
             type='file'
-            accept='image/*'
-            name='image'
-            value=''
             placeholder='Image URL'
             onChange={handleChange}
             className={styles.inputs}

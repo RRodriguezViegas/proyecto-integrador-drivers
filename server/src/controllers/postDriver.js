@@ -54,10 +54,10 @@ const postDriver = async (req, res) => {
   // try {
   try {
     if (req.file) {
-      const result = await cloudinary.uploader.upload(req.file.path);
+      const result = await cloudinary.uploader.upload(req.image.path);
       res.status(200).send({
         status: "success",
-        message: `${req.file.originalname} uploaded!`,
+        message: `${req.image.originalname} uploaded!`,
       });
     } else {
       res.status(404).send({ status: "error", message: `File not found!` });
