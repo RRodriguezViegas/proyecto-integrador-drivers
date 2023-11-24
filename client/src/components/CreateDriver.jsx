@@ -47,7 +47,7 @@ const CreateDriver = () => {
       });
     }
     setErrors(validate({ ...driverData, [e.target.name]: e.target.value }));
-    console.log(driverData);
+    // console.log(driverData);
   };
 
   const handleSubmit = async e => {
@@ -71,6 +71,8 @@ const CreateDriver = () => {
       driverDataForm.append("dob", driverData.dob);
       driverDataForm.append("teams", driverData.teams);
       driverDataForm.append("description", driverData.description);
+
+      console.log(driverDataForm);
 
       await dispatch(postDriver(driverDataForm));
       await dispatch(getTeams());
