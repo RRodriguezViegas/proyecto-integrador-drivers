@@ -5,6 +5,9 @@ const getDriversById = require("../controllers/getDriversById.js");
 const postDrivers = require("../controllers/postDriver.js");
 const deleteDriver = require("../controllers/deleteDriver.js");
 
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
 const driversRouter = Router();
 
 driversRouter.get("/", getDrivers);
