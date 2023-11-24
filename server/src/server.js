@@ -12,4 +12,4 @@ server.use(express.urlencoded({ extended: true }));
 
 server.use(router);
 
-module.exports = { server, upload };
+module.exports = server;
