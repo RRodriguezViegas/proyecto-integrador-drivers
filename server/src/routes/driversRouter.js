@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const upload = require("../server.js");
+const { upload } = require("../server.js");
 const getDrivers = require("../controllers/getDrivers.js");
 const getDriversById = require("../controllers/getDriversById.js");
 const postDrivers = require("../controllers/postDriver.js");
