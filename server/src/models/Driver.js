@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
 module.exports = sequelize => {
-  sequelize.define('Driver', {
+  sequelize.define("Driver", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -9,18 +9,18 @@ module.exports = sequelize => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     surname: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     description: {
       type: DataTypes.TEXT,
     },
     image: {
       type: DataTypes.TEXT,
-      defaultValue: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+      defaultValue: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
     },
     nationality: {
       type: DataTypes.STRING,
