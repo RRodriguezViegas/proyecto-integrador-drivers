@@ -45,8 +45,10 @@ const { Op } = require("sequelize");
 
 const postDriver = async (req, res) => {
   try {
-    const { name, surname, description, image, nationality, dob, teams } =
-      req.body;
+    const { name, surname, description, nationality, dob, teams } = req.body;
+
+    console.log(req.body);
+    console.log(req.image);
     // if (!name || !surname || !nationality || !dob) {
     //   return res.status(400).json({ error: "Faltan datos obligatorios" });
     // }
