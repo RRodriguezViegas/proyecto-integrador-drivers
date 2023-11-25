@@ -19,52 +19,40 @@ const postDriver = async (req, res) => {
     } else {
       res.status(404).send({ status: "error", message: `File not found!` });
     }
+
+    const { name, surname, nationality, dob, description } = req.body;
+
+    if (!name || !surname || !nationality || !dob) {
+      return res.status(400).json({ error: "Faltan datos obligatorios" });
+    }
+
+    const newDriver = await Driver.create({
+      name,
+      surname,
+      description,
+      image: req.file.path,
+      nationality,
+      dob,
+    });
+
+    const teamObjects = await Team.findAll({
+      where: {
+        nombre: {
+          [Op.in]: teams,
+        },
+      },
+    });
+
+    await newDriver.setTeams(teamObjects);
+
+    res.status(201).json({
+      status: "success",
+      data: newDriver,
+    });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ status: "err", error: err });
+    res.status(500).send({ error: error.message });
   }
-  // if (!name || !surname || !nationality || !dob) {
-  //   return res.status(400).json({ error: "Faltan datos obligatorios" });
-  // }
-
-  // upload(image, res, err => {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     return res.status(201).json({
-  //       url: "https://pi-drivers-backend.onrender.com/image/" + imageName,
-  //     });
-  //   }
-  // });
-
-  // if (image) {
-  //   const result = await uploadImage(image);
-  //   image = result;
-  // }
-
-  // const newDriver = await Driver.create({
-  //   name,
-  //   surname,
-  //   description,
-  //   // image,
-  //   nationality,
-  //   dob,
-  // });
-
-  // const teamObjects = await Team.findAll({
-  //   where: {
-  //     nombre: {
-  //       [Op.in]: teams,
-  //     },
-  //   },
-  // });
-
-  // await newDriver.setTeams(teamObjects);
-
-  //   res.status(201).json({ message: "OwO" });
-  // } catch (error) {
-  //   res.status(400).json({ error: error.message });
-  // }
 };
 
 module.exports = postDriver;
