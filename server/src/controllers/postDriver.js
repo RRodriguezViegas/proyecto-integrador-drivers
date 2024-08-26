@@ -1,5 +1,4 @@
 const { Driver, Team } = require("../db");
-const multer = require("multer");
 const { Op } = require("sequelize");
 const cloudinary = require("cloudinary").v2;
 
